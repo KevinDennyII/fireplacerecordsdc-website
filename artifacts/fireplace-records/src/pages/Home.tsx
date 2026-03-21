@@ -123,7 +123,7 @@ export default function Home() {
           </motion.h1>
 
           <motion.p variants={fadeUp} className="text-muted-foreground text-lg md:text-xl mb-10 max-w-xl mx-auto">
-            Vinyl · Cassettes · CDs · DVDs · VHS<br />
+            Vinyl · CDs · VHS · Comics · Magazines · Rare Media<br />
             5100 Baltimore Ave · Hyattsville, MD<br />
             <span className="text-foreground font-medium">Thu–Sun · 12PM–8PM</span>
           </motion.p>
@@ -253,64 +253,143 @@ export default function Home() {
             variants={stagger}
             initial="hidden"
             animate={aboutSection.isInView ? "visible" : "hidden"}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
           >
-            <motion.div variants={fadeUp}>
-              <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">The Store</span>
-              <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-bold uppercase leading-none mt-2 mb-6">
-                More Than<br />A Record Store
+            <motion.div variants={fadeUp} className="mb-16">
+              <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">The Story</span>
+              <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-bold uppercase leading-none mt-2">
+                Born from<br />the Crate
               </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                Fireplace Records is Hyattsville's newest home for physical media. We're more than a store — we're a community space for music lovers, collectors, and the DMV's vibrant culture scene.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-8">
-                Owned and operated by DJ 2-Tone Jones, we stock a carefully curated selection of physical media across formats. Whether you're hunting for a rare pressing or just discovering the warmth of vinyl for the first time, you'll find it here.
-              </p>
-              <div className="grid grid-cols-5 gap-3">
-                {["Vinyl", "Cassettes", "CDs", "DVDs", "VHS"].map((format) => (
-                  <div key={format} className="border border-border bg-muted/30 p-3 text-center">
-                    <span className="text-xs font-bold tracking-wider uppercase text-foreground/80">{format}</span>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              <motion.div variants={fadeUp} className="space-y-6">
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  Fireplace Records wasn't built overnight. For more than a decade, four DJs and lifelong vinyl collectors —{" "}
+                  <a href="https://www.instagram.com/dj2tonejones/" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:text-primary transition-colors underline underline-offset-2">DJ 2-Tone Jones</a>,{" "}
+                  <span className="text-foreground font-semibold">Anthony Mims</span>,{" "}
+                  <span className="text-foreground font-semibold">Black Wilson</span>, and{" "}
+                  <a href="https://www.instagram.com/dj_iran/" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:text-primary transition-colors underline underline-offset-2">DJ Iran</a>{" "}
+                  — hauled crates to farmers markets across the DMV.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Since 2021, they anchored the monthly Crate Convention at DC's Anacostia Arts Center. Their combined expertise and shared love for the culture made opening a permanent storefront feel inevitable. They pooled their resources and got it done.
+                </p>
+
+                <blockquote className="border-l-2 border-primary pl-6 py-1 my-6">
+                  <p className="text-foreground italic leading-relaxed">
+                    "Letting the other generations hear what we listened to is a good thing, and it keeps the good music coming."
+                  </p>
+                  <cite className="text-primary text-xs font-bold tracking-[0.15em] uppercase mt-3 block not-italic">— Anthony Mims, Co-founder</cite>
+                </blockquote>
+
+                <p className="text-muted-foreground leading-relaxed">
+                  DJ 2-Tone Jones envisions Fireplace Records as a lasting neighborhood hub — a place to "reintroduce that culture of a traditional record shop, where people come weekly to find community, have a hangout space, and explore music." Whether you're a seasoned collector, a producer, or a sample stalker, you belong here.
+                </p>
+
+                <div className="pt-2">
+                  <h3 className="text-muted-foreground text-xs font-bold tracking-[0.15em] uppercase mb-3">What We Carry</h3>
+                  <div className="grid grid-cols-3 gap-2">
+                    {["Vinyl", "CDs", "VHS", "Comics", "Magazines", "Rare Media"].map((format) => (
+                      <div key={format} className="border border-border bg-muted/30 p-3 text-center">
+                        <span className="text-xs font-bold tracking-wider uppercase text-foreground/80">{format}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeUp} className="space-y-6">
-              <div className="border border-border bg-card p-8">
-                <div className="w-10 h-10 rounded-full border-2 border-primary bg-primary/10 flex items-center justify-center mb-4">
-                  <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
-                  </svg>
                 </div>
-                <h3 className="font-display text-xl font-bold uppercase mb-2">Online Store — Coming Soon</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  We're working on bringing our full inventory online so you can shop from anywhere. Sign up for our mailing list to be the first to know when we launch.
-                </p>
-                <a href="#mailing-list" className="mt-4 inline-block text-primary text-sm font-bold tracking-wide hover:underline">
-                  Get notified →
-                </a>
-              </div>
 
-              <div className="border border-border bg-card p-8">
-                <div className="w-10 h-10 rounded-full border-2 border-secondary bg-secondary/10 flex items-center justify-center mb-4">
-                  <svg className="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                  </svg>
+                <div>
+                  <h3 className="text-muted-foreground text-xs font-bold tracking-[0.15em] uppercase mb-2">Genres</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Hip-Hop · R&B · Jazz · Gospel · Rock · Funk · Reggae · Pop — and everything in between.
+                  </p>
                 </div>
-                <h3 className="font-display text-xl font-bold uppercase mb-2">Follow Us</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                  New inventory drops, events, and DMV culture. Follow us on Instagram.
-                </p>
-                <a
-                  href="https://www.instagram.com/fireplacerecordsdc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-secondary font-bold tracking-wide hover:underline text-sm"
-                >
-                  @fireplacerecordsdc →
-                </a>
-              </div>
-            </motion.div>
+              </motion.div>
+
+              <motion.div variants={fadeUp} className="space-y-5">
+                <div className="border border-border bg-card p-8">
+                  <h3 className="font-display text-xl font-bold uppercase mb-6">The Four Founders</h3>
+                  <div className="space-y-5">
+                    {[
+                      {
+                        name: "DJ 2-Tone Jones",
+                        role: "DJ · producer · co-creator of Shaolin Jazz · US Ambassador of Hip Hop",
+                        href: "https://www.instagram.com/dj2tonejones/",
+                        handle: "@dj2tonejones",
+                      },
+                      {
+                        name: "Anthony Mims",
+                        role: "Philadelphia native · Hyattsville resident · lifelong collector",
+                        href: null as string | null,
+                        handle: null as string | null,
+                      },
+                      {
+                        name: "Black Wilson",
+                        role: "Native Washingtonian · committed to serving the community's needs",
+                        href: null as string | null,
+                        handle: null as string | null,
+                      },
+                      {
+                        name: "DJ Iran",
+                        role: "WHUR radio · Howard University · DMV vinyl veteran",
+                        href: "https://www.instagram.com/dj_iran/",
+                        handle: "@dj_iran",
+                      },
+                    ].map(({ name, role, href, handle }) => (
+                      <div key={name} className="flex items-start gap-4 border-t border-border pt-5 first:border-0 first:pt-0">
+                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <div>
+                          {href ? (
+                            <a href={href} target="_blank" rel="noopener noreferrer" className="font-bold text-foreground hover:text-primary transition-colors">
+                              {name}
+                            </a>
+                          ) : (
+                            <span className="font-bold text-foreground">{name}</span>
+                          )}
+                          <p className="text-muted-foreground text-sm mt-0.5">{role}</p>
+                          {handle && (
+                            <a href={href!} target="_blank" rel="noopener noreferrer" className="text-xs text-primary font-bold tracking-wide hover:underline mt-1 block">
+                              {handle} ↗
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border border-border bg-card p-8">
+                  <h3 className="font-display text-xl font-bold uppercase mb-3">How We Grade Records</h3>
+                  <p className="text-muted-foreground text-sm mb-5">Every vinyl is hand-labeled so you know exactly what you're getting.</p>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { grade: "NM", label: "Near Mint" },
+                      { grade: "EX", label: "Excellent" },
+                      { grade: "VG+", label: "Very Good+" },
+                    ].map(({ grade, label }) => (
+                      <div key={grade} className="bg-muted/30 border border-border p-3 text-center">
+                        <span className="font-display font-bold text-xl text-primary block">{grade}</span>
+                        <span className="text-xs text-muted-foreground mt-1 block">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border border-border bg-card p-6">
+                  <h3 className="font-display text-xl font-bold uppercase mb-2">Follow Us</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                    New inventory drops, events, and DMV culture on Instagram.
+                  </p>
+                  <a
+                    href="https://www.instagram.com/fireplacerecordsdc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-secondary font-bold tracking-wide hover:underline text-sm"
+                  >
+                    @fireplacerecordsdc →
+                  </a>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
