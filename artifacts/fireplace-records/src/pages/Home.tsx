@@ -7,7 +7,7 @@ import { z } from "zod";
 const BASE_URL = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const emailSchema = z.object({
-  name: z.string().min(1, "Name is required"),
+  name: z.string().optional(),
   email: z.string().email("Please enter a valid email address"),
 });
 type EmailFormData = z.infer<typeof emailSchema>;
@@ -448,13 +448,10 @@ export default function Home() {
                   <input
                     {...register("name")}
                     type="text"
-                    placeholder="Your name"
+                    placeholder="Your name (optional)"
                     className="w-full bg-card border border-border px-4 py-3.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary transition-colors text-sm"
-                    aria-label="Your name"
+                    aria-label="Your name (optional)"
                   />
-                  {errors.name && (
-                    <p className="mt-1 text-xs text-destructive">{errors.name.message}</p>
-                  )}
                 </div>
                 <div className="text-left">
                   <input
