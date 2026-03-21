@@ -42,6 +42,20 @@ router.post("/mailing-list", async (req, res) => {
       message: "You've been added to the Fireplace Records mailing list!",
     });
   } catch (err) {
+    const isUniqueViolation =
+      typeof err === "object" &&
+      err !== null &&
+      "code" in err &&
+      (err as { code: unknown }).code === "23505";
+
+    if (isUniqueViolation) {
+      res.status(409).json({
+        error: "already_subscribed",
+        message: "This email is already subscribed to our mailing list.",
+      });
+      return;
+    }
+
     req.log.error({ err }, "Error subscribing to mailing list");
     res.status(500).json({
       error: "server_error",

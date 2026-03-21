@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
-const BASE_URL = import.meta.env.BASE_URL.replace(/\/$/, "");
+import { useSubscribeMailingList } from "@workspace/api-client-react";
+import type { SubscribeMailingListMutationError } from "@workspace/api-client-react";
 
 const emailSchema = z.object({
   name: z.string().optional(),
@@ -36,35 +36,35 @@ export default function Home() {
   const visitSection = useAnimatedSection();
   const mailingSection = useAnimatedSection();
 
-  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [formMessage, setFormMessage] = useState("");
-
   const { register, handleSubmit, reset, formState: { errors } } = useForm<EmailFormData>({
     resolver: zodResolver(emailSchema),
   });
 
-  const onSubmit = async (data: EmailFormData) => {
-    setFormStatus("loading");
-    try {
-      const res = await fetch(`${BASE_URL}/api/mailing-list`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const json = await res.json();
-      if (res.ok) {
-        setFormStatus("success");
-        setFormMessage(json.message || "You're on the list!");
-        reset();
-      } else {
-        setFormStatus("error");
-        setFormMessage(json.message || "Something went wrong. Please try again.");
-      }
-    } catch {
-      setFormStatus("error");
-      setFormMessage("Network error. Please try again.");
-    }
+  const subscribe = useSubscribeMailingList({
+    mutation: {
+      onSuccess: () => { reset(); },
+    },
+  });
+
+  const onSubmit = (formData: EmailFormData) => {
+    subscribe.mutate({ data: { email: formData.email, name: formData.name || undefined } });
   };
+
+  const formStatus = subscribe.status === "pending"
+    ? "loading"
+    : subscribe.status === "success"
+    ? "success"
+    : subscribe.status === "error"
+    ? "error"
+    : "idle";
+
+  const apiError = subscribe.error as SubscribeMailingListMutationError | null;
+
+  const formMessage = subscribe.status === "success"
+    ? (subscribe.data?.message ?? "You're on the list!")
+    : subscribe.status === "error"
+    ? (apiError?.data?.message ?? "Something went wrong. Please try again.")
+    : "";
 
   return (
     <div className="min-h-screen bg-background text-foreground">
