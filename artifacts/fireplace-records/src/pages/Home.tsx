@@ -18,9 +18,11 @@ function useAnimatedSection() {
   return { ref, isInView };
 }
 
+const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
+
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } },
 };
 
 const stagger = {
