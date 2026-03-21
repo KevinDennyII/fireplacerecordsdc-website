@@ -1,0 +1,16 @@
+packages:
+  "framer-motion": "For page transitions, section reveals, and smooth scroll animations to create a premium feel"
+  "react-hook-form": "For robust handling of the newsletter signup form"
+  "@hookform/resolvers": "For validating the newsletter form with Zod"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility for merging Tailwind classes"
+
+images:
+  - path: "artifacts/fireplace-records/public/images/vinyl-texture.png"
+    description: "Abstract macro photography of vinyl record grooves, dark cinematic lighting, moody black and charcoal tones with a very subtle warm red rim light reflection, highly textured"
+    aspect_ratio: "16:9"
+
+notes:
+  - Using @assets/ alias for flyer images as provided in the workspace context
+  - API hooks are imported from @workspace/api-client-react
+  - Intrapage navigation uses standard anchor tags with smooth scroll behavior rather than wouter Links

@@ -14,3 +14,12 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * Subscribe an email address to the Fireplace Records mailing list
+ * @summary Subscribe to mailing list
+ */
+export const SubscribeMailingListBody = zod.object({
+  email: zod.string().email(),
+  name: zod.string().optional(),
+});

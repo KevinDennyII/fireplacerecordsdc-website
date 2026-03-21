@@ -8,3 +8,18 @@
 export interface HealthStatus {
   status: string;
 }
+
+export interface MailingListSubscribeRequest {
+  email: string;
+  name?: string;
+}
+
+export interface MailingListSubscribeResponse {
+  success: boolean;
+  message: string;
+}
+
+export interface ErrorResponse {
+  error: string;
+  message: string;
+}
