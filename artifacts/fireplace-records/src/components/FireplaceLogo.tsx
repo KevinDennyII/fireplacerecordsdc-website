@@ -1,8 +1,4 @@
-import { useId } from "react";
-
 export function FireplaceLogo({ className }: { className?: string }) {
-  const uid = useId().replace(/:/g, "");
-  const interiorClipId = `sleeve-int-${uid}`;
 
   return (
     <span className={`inline-flex items-center gap-2 ${className ?? ""}`}>
@@ -50,15 +46,8 @@ export function FireplaceLogo({ className }: { className?: string }) {
         aria-hidden="true"
         style={{ width: "1.4em", height: "1.4em", flexShrink: 0 }}
       >
-        <defs>
-          <clipPath id={interiorClipId}>
-            <rect x="4" y="4" width="30" height="30" />
-          </clipPath>
-        </defs>
-        <rect x="2" y="2" width="34" height="34" fill="white" stroke="#dc2626" strokeWidth="4" />
-        <g clipPath={`url(#${interiorClipId})`}>
-          <circle cx="34" cy="19" r="15" fill="#000" />
-        </g>
+        <rect x="2" y="2" width="32" height="32" fill="white" stroke="#dc2626" strokeWidth="5" />
+        <circle cx="36" cy="18" r="12" fill="#000" />
       </svg>
     </span>
   );
