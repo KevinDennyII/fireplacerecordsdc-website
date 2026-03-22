@@ -57,11 +57,7 @@ export function FireplaceLogo({ className }: { className?: string }) {
         </defs>
         <rect x="2" y="2" width="34" height="34" fill="white" stroke="#dc2626" strokeWidth="4" />
         <g clipPath={`url(#${interiorClipId})`}>
-          <circle cx="33" cy="21" r="14" fill="#111827" />
-          <circle cx="33" cy="21" r="11" fill="none" stroke="rgba(255,255,255,0.30)" strokeWidth="1.5" />
-          <circle cx="33" cy="21" r="8"  fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.3" />
-          <circle cx="33" cy="21" r="5"  fill="none" stroke="rgba(255,255,255,0.20)" strokeWidth="1.1" />
-          <circle cx="33" cy="21" r="2.5" fill="#888" />
+          <circle cx="33" cy="21" r="14" fill="#000" />
         </g>
       </svg>
     </span>
