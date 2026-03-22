@@ -49,6 +49,13 @@ artifacts-monorepo/
 
 **Design**: Dark modern aesthetic, Clash Display + DM Sans fonts, bold red/orange accents. Fluid typography via `clamp()`. Framer Motion animations.
 
+**Logo**: Bebas Neue wordmark with inline vinyl "o" SVG + real sleeve icon image (`Screenshot_2026-03-22...png` imported via `@assets` alias). Nav uses title-case "Fireplace Records"; hero uses all-caps with outline text style.
+
+**Code quality standards applied**:
+- Josh Comeau CSS: `clamp()` fluid type, CSS custom properties for all tokens, `prefers-reduced-motion` media query
+- Clean Code: STORE_HOURS and IN_VIEW_MARGIN named constants, founders array uses `satisfies` pattern, hours rendered from data array
+- Steve Gibson Security: CORS restricted via `ALLOWED_ORIGIN` env var + methods/headers whitelist, JSON body size limit
+
 **Security** (per Steve Gibson / Security Now principles):
 - CSP headers: `default-src 'self'`, no inline scripts
 - X-Frame-Options: DENY

@@ -16,6 +16,18 @@ import imgExterior from "@assets/exterior-2-scaled_1774151838231.png";
 import imgStorefront from "@assets/exterior-1-scaled_1774152167184.png";
 import imgGrandOpeningFlyer from "@assets/Screenshot_2026-03-21_at_11.10.08_PM_1774152614267.png";
 
+const IN_VIEW_MARGIN = "-80px 0px" as const;
+
+const STORE_HOURS = [
+  { day: "Monday",    hours: "Closed",      isOpen: false, divider: false },
+  { day: "Tuesday",   hours: "Closed",      isOpen: false, divider: false },
+  { day: "Wednesday", hours: "Closed",      isOpen: false, divider: false },
+  { day: "Thursday",  hours: "12PM – 8PM",  isOpen: true,  divider: true  },
+  { day: "Friday",    hours: "12PM – 8PM",  isOpen: true,  divider: false },
+  { day: "Saturday",  hours: "12PM – 8PM",  isOpen: true,  divider: false },
+  { day: "Sunday",    hours: "12PM – 8PM",  isOpen: true,  divider: false },
+] as const;
+
 const emailSchema = z.object({
   name: z.string().optional(),
   email: z.string().email("Please enter a valid email address"),
@@ -24,7 +36,7 @@ type EmailFormData = z.infer<typeof emailSchema>;
 
 function useAnimatedSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px 0px" });
+  const isInView = useInView(ref, { once: true, margin: IN_VIEW_MARGIN });
   return { ref, isInView };
 }
 
@@ -296,40 +308,49 @@ export default function Home() {
                 <div>
                   <h3 className="font-display text-xl font-bold uppercase mb-5">The Four Founders</h3>
                   <div className="grid grid-cols-2 gap-4">
-                    {[
-                      {
-                        name: "DJ 2-Tone Jones",
-                        role: "Co-creator of Shaolin Jazz · US Ambassador of Hip Hop",
-                        href: "https://www.instagram.com/dj2tonejones/",
-                        handle: "@dj2tonejones",
-                        photo: imgDjTwoToneJones,
-                        photoAlt: "DJ 2-Tone Jones standing in Fireplace Records",
-                      },
-                      {
-                        name: "Anthony Mims",
-                        role: "Philadelphia native · Hyattsville resident",
-                        href: null as string | null,
-                        handle: null as string | null,
-                        photo: imgAnthonyMims,
-                        photoAlt: "Anthony Mims co-founder of Fireplace Records",
-                      },
-                      {
-                        name: "Black Wilson",
-                        role: "Native Washingtonian · community-first",
-                        href: null as string | null,
-                        handle: null as string | null,
-                        photo: imgBlackWilson,
-                        photoAlt: "Black Wilson co-founder of Fireplace Records",
-                      },
-                      {
-                        name: "DJ Iran",
-                        role: "WHUR radio · Howard University · DMV vinyl veteran",
-                        href: "https://www.instagram.com/dj_iran/",
-                        handle: "@dj_iran",
-                        photo: null as string | null,
-                        photoAlt: null as string | null,
-                      },
-                    ].map(({ name, role, href, handle, photo, photoAlt }) => (
+                    {(
+                      [
+                        {
+                          name: "DJ 2-Tone Jones",
+                          role: "Co-creator of Shaolin Jazz · US Ambassador of Hip Hop",
+                          href: "https://www.instagram.com/dj2tonejones/",
+                          handle: "@dj2tonejones",
+                          photo: imgDjTwoToneJones,
+                          photoAlt: "DJ 2-Tone Jones standing in Fireplace Records",
+                        },
+                        {
+                          name: "Anthony Mims",
+                          role: "Philadelphia native · Hyattsville resident",
+                          href: null,
+                          handle: null,
+                          photo: imgAnthonyMims,
+                          photoAlt: "Anthony Mims co-founder of Fireplace Records",
+                        },
+                        {
+                          name: "Black Wilson",
+                          role: "Native Washingtonian · community-first",
+                          href: null,
+                          handle: null,
+                          photo: imgBlackWilson,
+                          photoAlt: "Black Wilson co-founder of Fireplace Records",
+                        },
+                        {
+                          name: "DJ Iran",
+                          role: "WHUR radio · Howard University · DMV vinyl veteran",
+                          href: "https://www.instagram.com/dj_iran/",
+                          handle: "@dj_iran",
+                          photo: null,
+                          photoAlt: null,
+                        },
+                      ] as const satisfies Array<{
+                        name: string;
+                        role: string;
+                        href: string | null;
+                        handle: string | null;
+                        photo: string | null;
+                        photoAlt: string | null;
+                      }>
+                    ).map(({ name, role, href, handle, photo, photoAlt }) => (
                       <div key={name} className="group">
                         <div className="aspect-square overflow-hidden bg-muted mb-3">
                           {photo ? (
@@ -448,34 +469,15 @@ export default function Home() {
                   <div>
                     <h3 className="text-muted-foreground text-xs font-bold tracking-[0.15em] uppercase mb-3">Hours</h3>
                     <div className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground text-sm">Monday</span>
-                        <span className="text-sm font-medium text-muted-foreground/60">Closed</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground text-sm">Tuesday</span>
-                        <span className="text-sm font-medium text-muted-foreground/60">Closed</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground text-sm">Wednesday</span>
-                        <span className="text-sm font-medium text-muted-foreground/60">Closed</span>
-                      </div>
-                      <div className="flex justify-between items-center border-t border-border pt-2 mt-2">
-                        <span className="font-bold text-foreground text-sm">Thursday</span>
-                        <span className="text-sm font-bold text-primary">12PM – 8PM</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="font-bold text-foreground text-sm">Friday</span>
-                        <span className="text-sm font-bold text-primary">12PM – 8PM</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="font-bold text-foreground text-sm">Saturday</span>
-                        <span className="text-sm font-bold text-primary">12PM – 8PM</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="font-bold text-foreground text-sm">Sunday</span>
-                        <span className="text-sm font-bold text-primary">12PM – 8PM</span>
-                      </div>
+                      {STORE_HOURS.map(({ day, hours, isOpen, divider }) => (
+                        <div
+                          key={day}
+                          className={`flex justify-between items-center${divider ? " border-t border-border pt-2 mt-2" : ""}`}
+                        >
+                          <span className={`text-sm${isOpen ? " font-bold text-foreground" : " text-muted-foreground"}`}>{day}</span>
+                          <span className={`text-sm${isOpen ? " font-bold text-primary" : " font-medium text-muted-foreground/60"}`}>{hours}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

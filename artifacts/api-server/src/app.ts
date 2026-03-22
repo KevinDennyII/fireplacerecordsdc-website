@@ -57,8 +57,16 @@ app.use((_req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.use(cors());
-app.use(express.json());
+const allowedOrigin = process.env["ALLOWED_ORIGIN"] ?? (
+  process.env.NODE_ENV === "production" ? "" : "*"
+);
+
+app.use(cors({
+  origin: allowedOrigin || false,
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+}));
+app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
