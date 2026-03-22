@@ -1,3 +1,5 @@
+import sleeveImg from "@assets/Screenshot_2026-03-22_at_1.55.11_PM_1774206667947.png";
+
 export function FireplaceLogo({ className }: { className?: string }) {
 
   return (
@@ -41,14 +43,12 @@ export function FireplaceLogo({ className }: { className?: string }) {
         />
       </span>
 
-      <svg
-        viewBox="0 0 44 40"
+      <img
+        src={sleeveImg}
+        alt=""
         aria-hidden="true"
-        style={{ width: "1.54em", height: "1.4em", flexShrink: 0 }}
-      >
-        <rect x="2" y="2" width="36" height="36" fill="white" stroke="#dc2626" strokeWidth="6" />
-        <circle cx="41" cy="20" r="13" fill="#000" />
-      </svg>
+        style={{ width: "1.5em", height: "1.5em", flexShrink: 0, objectFit: "contain" }}
+      />
     </span>
   );
 }
