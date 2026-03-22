@@ -5,6 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useSubscribeMailingList } from "@workspace/api-client-react";
 import type { SubscribeMailingListMutationError } from "@workspace/api-client-react";
+import imgInterior1 from "@assets/interior-1-scaled_1774151838219.png";
+import imgInterior2 from "@assets/interior-2-scaled_1774151838221.png";
+import imgInterior3 from "@assets/interior-3-scaled_1774151838222.png";
+import imgDjTwoToneJones from "@assets/DJ-2-Tone-Jones-scaled_1774151838225.png";
+import imgAnthonyMims from "@assets/Anthony-Mims-scaled_1774151838226.png";
+import imgBlackWilson from "@assets/Black-Wilson-scaled_1774151838227.png";
+import imgExterior from "@assets/exterior-2-scaled_1774151838231.png";
 
 const emailSchema = z.object({
   name: z.string().optional(),
@@ -90,17 +97,13 @@ export default function Home() {
       </header>
 
       {/* ─── HERO ─── */}
-      <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-16 overflow-hidden">
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            backgroundImage: `url('/images/vinyl-texture.png')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "brightness(0.3)",
-          }}
+      <section id="hero" className="relative isolate min-h-screen flex flex-col items-center justify-center pt-16 overflow-hidden">
+        <img
+          src={imgInterior3}
+          alt="Inside Fireplace Records — walls lined with vinyl"
+          className="absolute inset-0 -z-10 w-full h-full object-cover object-center brightness-50"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/60 via-transparent to-background" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/20 to-background" />
 
         <motion.div
           ref={heroSection.ref}
@@ -306,46 +309,66 @@ export default function Home() {
               </motion.div>
 
               <motion.div variants={fadeUp} className="space-y-5">
-                <div className="border border-border bg-card p-8">
-                  <h3 className="font-display text-xl font-bold uppercase mb-6">The Four Founders</h3>
-                  <div className="space-y-5">
+                <div>
+                  <h3 className="font-display text-xl font-bold uppercase mb-5">The Four Founders</h3>
+                  <div className="grid grid-cols-2 gap-4">
                     {[
                       {
                         name: "DJ 2-Tone Jones",
-                        role: "DJ · producer · co-creator of Shaolin Jazz · US Ambassador of Hip Hop",
+                        role: "Co-creator of Shaolin Jazz · US Ambassador of Hip Hop",
                         href: "https://www.instagram.com/dj2tonejones/",
                         handle: "@dj2tonejones",
+                        photo: imgDjTwoToneJones,
+                        photoAlt: "DJ 2-Tone Jones standing in Fireplace Records",
                       },
                       {
                         name: "Anthony Mims",
-                        role: "Philadelphia native · Hyattsville resident · lifelong collector",
+                        role: "Philadelphia native · Hyattsville resident",
                         href: null as string | null,
                         handle: null as string | null,
+                        photo: imgAnthonyMims,
+                        photoAlt: "Anthony Mims co-founder of Fireplace Records",
                       },
                       {
                         name: "Black Wilson",
-                        role: "Native Washingtonian · committed to serving the community's needs",
+                        role: "Native Washingtonian · community-first",
                         href: null as string | null,
                         handle: null as string | null,
+                        photo: imgBlackWilson,
+                        photoAlt: "Black Wilson co-founder of Fireplace Records",
                       },
                       {
                         name: "DJ Iran",
                         role: "WHUR radio · Howard University · DMV vinyl veteran",
                         href: "https://www.instagram.com/dj_iran/",
                         handle: "@dj_iran",
+                        photo: null as string | null,
+                        photoAlt: null as string | null,
                       },
-                    ].map(({ name, role, href, handle }) => (
-                      <div key={name} className="flex items-start gap-4 border-t border-border pt-5 first:border-0 first:pt-0">
-                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    ].map(({ name, role, href, handle, photo, photoAlt }) => (
+                      <div key={name} className="group">
+                        <div className="aspect-square overflow-hidden bg-muted mb-3">
+                          {photo ? (
+                            <img
+                              src={photo}
+                              alt={photoAlt ?? name}
+                              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-muted border border-border">
+                              <span className="font-display text-4xl text-muted-foreground/30 font-bold uppercase">DJ</span>
+                            </div>
+                          )}
+                        </div>
                         <div>
                           {href ? (
-                            <a href={href} target="_blank" rel="noopener noreferrer" className="font-bold text-foreground hover:text-primary transition-colors">
+                            <a href={href} target="_blank" rel="noopener noreferrer" className="font-bold text-sm text-foreground hover:text-primary transition-colors">
                               {name}
                             </a>
                           ) : (
-                            <span className="font-bold text-foreground">{name}</span>
+                            <span className="font-bold text-sm text-foreground">{name}</span>
                           )}
-                          <p className="text-muted-foreground text-sm mt-0.5">{role}</p>
+                          <p className="text-muted-foreground text-xs mt-0.5 leading-snug">{role}</p>
                           {handle && (
                             <a href={href!} target="_blank" rel="noopener noreferrer" className="text-xs text-primary font-bold tracking-wide hover:underline mt-1 block">
                               {handle} ↗
@@ -390,6 +413,19 @@ export default function Home() {
                 </div>
               </motion.div>
             </div>
+
+            {/* Interior photo gallery */}
+            <motion.div variants={fadeUp} className="mt-16 grid grid-cols-3 gap-3">
+              {[
+                { src: imgInterior1, alt: "Listening station, turntable, and album covers at Fireplace Records" },
+                { src: imgInterior2, alt: "Crates of records and cassettes at Fireplace Records" },
+                { src: imgInterior3, alt: "Wide view of Fireplace Records interior with orange walls" },
+              ].map(({ src, alt }) => (
+                <div key={alt} className="aspect-square overflow-hidden">
+                  <img src={src} alt={alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -462,6 +498,13 @@ export default function Home() {
               </motion.div>
 
               <motion.div variants={fadeUp} className="space-y-4">
+                <div className="overflow-hidden">
+                  <img
+                    src={imgExterior}
+                    alt="Fireplace Records neon 'records' sign in the store window"
+                    className="w-full aspect-square object-cover object-center hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
                 <div className="border border-border bg-card p-6">
                   <h3 className="text-muted-foreground text-xs font-bold tracking-[0.15em] uppercase mb-3">Call Us</h3>
                   <a href="tel:+12403347546" className="font-display text-2xl font-bold hover:text-primary transition-colors">
