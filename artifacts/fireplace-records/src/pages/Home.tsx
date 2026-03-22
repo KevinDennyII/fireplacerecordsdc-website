@@ -12,6 +12,7 @@ import imgDjTwoToneJones from "@assets/DJ-2-Tone-Jones-scaled_1774151838225.png"
 import imgAnthonyMims from "@assets/Anthony-Mims-scaled_1774151838226.png";
 import imgBlackWilson from "@assets/Black-Wilson-scaled_1774151838227.png";
 import imgExterior from "@assets/exterior-2-scaled_1774151838231.png";
+import imgStorefront from "@assets/exterior-1-scaled_1774152167184.png";
 
 const emailSchema = z.object({
   name: z.string().optional(),
@@ -99,9 +100,9 @@ export default function Home() {
       {/* ─── HERO ─── */}
       <section id="hero" className="relative isolate min-h-screen flex flex-col items-center justify-center pt-16 overflow-hidden">
         <img
-          src={imgInterior3}
-          alt="Inside Fireplace Records — walls lined with vinyl"
-          className="absolute inset-0 -z-10 w-full h-full object-cover object-center brightness-50"
+          src={imgStorefront}
+          alt="Fireplace Records storefront — open sign and chalkboard reading 'When Servers Go Down Vinyl Will Still Be Here'"
+          className="absolute inset-0 -z-10 w-full h-full object-cover object-top brightness-50"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/20 to-background" />
 
