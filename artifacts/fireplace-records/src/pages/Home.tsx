@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { FireplaceLogo } from "@/components/FireplaceLogo";
 import { motion, useInView } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -81,8 +82,8 @@ export default function Home() {
       {/* ─── NAV ─── */}
       <header className="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-background/90 backdrop-blur-md">
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-          <a href="#hero" className="font-display font-bold text-lg tracking-widest uppercase text-foreground hover:text-primary transition-colors">
-            Fireplace Records
+          <a href="#hero" className="text-foreground hover:text-primary transition-colors text-xl">
+            <FireplaceLogo />
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide uppercase text-muted-foreground">
             <a href="#events" className="hover:text-foreground transition-colors">Events</a>
@@ -595,8 +596,8 @@ export default function Home() {
       {/* ─── FOOTER ─── */}
       <footer className="border-t border-border py-10 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <div className="font-display font-bold text-base uppercase tracking-widest text-foreground">
-            Fireplace Records
+          <div className="text-foreground text-lg">
+            <FireplaceLogo />
           </div>
           <div className="text-center">
             <p>5100 Baltimore Ave · Hyattsville, MD 20781</p>
