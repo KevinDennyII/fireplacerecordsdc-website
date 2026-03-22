@@ -102,7 +102,7 @@ export default function Home() {
         <img
           src={imgStorefront}
           alt="Fireplace Records storefront — open sign and chalkboard reading 'When Servers Go Down Vinyl Will Still Be Here'"
-          className="absolute inset-0 -z-10 w-full h-full object-contain object-center brightness-50"
+          className="absolute inset-0 -z-10 w-full h-full object-cover object-top brightness-50"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/20 to-background" />
 
