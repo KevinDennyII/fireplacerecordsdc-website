@@ -611,7 +611,19 @@ export default function Home() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-4 text-center text-xs text-muted-foreground/40">
-          © {new Date().getFullYear()} Fireplace Records. All rights reserved.
+          <p>© {new Date().getFullYear()} Fireplace Records. All rights reserved.</p>
+          <p className="mt-1">
+            Architected by{" "}
+            <a
+              href="https://www.ohhdennyservices.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-muted-foreground/70 transition-colors underline underline-offset-2"
+            >
+              OhhDenny Services, LLC
+            </a>
+            {" "}with ♥
+          </p>
         </div>
       </footer>
     </div>
