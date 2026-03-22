@@ -46,22 +46,22 @@ export function FireplaceLogo({ className }: { className?: string }) {
       </span>
 
       <svg
-        viewBox="0 0 34 38"
+        viewBox="0 0 38 32"
         aria-hidden="true"
         style={{ width: "1.15em", height: "1.15em", flexShrink: 0 }}
       >
         <defs>
           <clipPath id={clipId}>
-            <rect x="0" y="0" width="34" height="38" />
+            <rect x="0" y="0" width="38" height="32" />
           </clipPath>
         </defs>
-        <rect x="1.5" y="1.5" width="24" height="35" fill="white" stroke="#dc2626" strokeWidth="3" />
         <g clipPath={`url(#${clipId})`}>
-          <circle cx="30" cy="19" r="13" fill="#111827" />
-          <circle cx="30" cy="19" r="10.5" fill="none" stroke="rgba(255,255,255,0.22)" strokeWidth="1.2" />
-          <circle cx="30" cy="19" r="7.5"  fill="none" stroke="rgba(255,255,255,0.20)" strokeWidth="1.0" />
-          <circle cx="30" cy="19" r="4.5"  fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="0.9" />
-          <circle cx="30" cy="19" r="2"    fill="#555" />
+          <circle cx="31" cy="15" r="12" fill="#111827" />
+          <circle cx="31" cy="15" r="9.5" fill="none" stroke="rgba(255,255,255,0.22)" strokeWidth="1.2" />
+          <circle cx="31" cy="15" r="7"   fill="none" stroke="rgba(255,255,255,0.20)" strokeWidth="1.0" />
+          <circle cx="31" cy="15" r="4.5" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="0.9" />
+          <circle cx="31" cy="15" r="2"   fill="#555" />
+          <rect x="1.5" y="1.5" width="26" height="26" fill="white" stroke="#dc2626" strokeWidth="3" />
         </g>
       </svg>
     </span>
