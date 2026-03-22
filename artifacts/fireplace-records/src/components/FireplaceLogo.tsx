@@ -42,12 +42,12 @@ export function FireplaceLogo({ className }: { className?: string }) {
       </span>
 
       <svg
-        viewBox="0 0 40 40"
+        viewBox="0 0 44 40"
         aria-hidden="true"
-        style={{ width: "1.4em", height: "1.4em", flexShrink: 0 }}
+        style={{ width: "1.54em", height: "1.4em", flexShrink: 0 }}
       >
-        <rect x="2" y="2" width="32" height="32" fill="white" stroke="#dc2626" strokeWidth="5" />
-        <circle cx="36" cy="18" r="12" fill="#000" />
+        <rect x="2" y="2" width="36" height="36" fill="white" stroke="#dc2626" strokeWidth="6" />
+        <circle cx="41" cy="20" r="13" fill="#000" />
       </svg>
     </span>
   );
