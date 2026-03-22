@@ -13,6 +13,7 @@ import imgAnthonyMims from "@assets/Anthony-Mims-scaled_1774151838226.png";
 import imgBlackWilson from "@assets/Black-Wilson-scaled_1774151838227.png";
 import imgExterior from "@assets/exterior-2-scaled_1774151838231.png";
 import imgStorefront from "@assets/exterior-1-scaled_1774152167184.png";
+import imgGrandOpeningFlyer from "@assets/Screenshot_2026-03-21_at_11.10.08_PM_1774152614267.png";
 
 const emailSchema = z.object({
   name: z.string().optional(),
@@ -156,7 +157,7 @@ export default function Home() {
       </section>
 
       {/* ─── EVENTS ─── */}
-      <section id="events" className="py-24 px-6 border-t border-border">
+      <section id="events" className="py-16 px-6 border-t border-border">
         <div className="max-w-7xl mx-auto">
           <motion.div
             ref={eventsSection.ref}
@@ -164,31 +165,21 @@ export default function Home() {
             initial="hidden"
             animate={eventsSection.isInView ? "visible" : "hidden"}
           >
-            <motion.div variants={fadeUp} className="mb-16">
+            <motion.div variants={fadeUp} className="mb-10">
               <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">Upcoming Events</span>
-              <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-bold uppercase leading-none mt-2">What's<br />Happening</h2>
+              <h2 className="font-display text-[clamp(2rem,5vw,4rem)] font-bold uppercase leading-none mt-2">What's<br />Happening</h2>
             </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
               {/* Grand Opening Card */}
               <motion.div variants={fadeUp} className="bg-card border border-border group hover:border-primary/50 transition-colors duration-300">
-                <div className="relative overflow-hidden aspect-[4/5]">
+                <div className="overflow-hidden aspect-[4/5] bg-white flex items-center justify-center">
                   <img
-                    src="/grand-opening-flyer.png"
-                    alt="Fireplace Records Grand Opening Weekend March 27-29"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    src={imgGrandOpeningFlyer}
+                    alt="Fireplace Records Grand Opening Weekend March 27-29 flyer"
+                    className="w-full h-full object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="inline-block bg-primary text-white text-xs font-bold tracking-[0.15em] uppercase px-3 py-1 mb-3">
-                      Grand Opening
-                    </span>
-                    <h3 className="font-display text-3xl font-bold uppercase leading-tight">
-                      Grand Opening<br />Weekend
-                    </h3>
-                    <p className="text-primary font-bold text-xl mt-1">March 27–29, 2026</p>
-                  </div>
                 </div>
                 <div className="p-6">
                   <p className="text-muted-foreground text-sm mb-4">Performances &amp; Sets By:</p>
@@ -214,22 +205,12 @@ export default function Home() {
 
               {/* 404 Day Card */}
               <motion.div variants={fadeUp} className="bg-card border border-border group hover:border-secondary/50 transition-colors duration-300">
-                <div className="relative overflow-hidden aspect-[4/5]">
+                <div className="overflow-hidden aspect-[4/5] bg-muted flex items-center justify-center">
                   <img
                     src="/404-day-flyer.png"
                     alt="Sound Doctors 404 Day Producer Showcase April 4th 2026"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="inline-block bg-secondary text-white text-xs font-bold tracking-[0.15em] uppercase px-3 py-1 mb-3">
-                      Producer Showcase
-                    </span>
-                    <h3 className="font-display text-3xl font-bold uppercase leading-tight">
-                      Sound Doctors<br />404 Day
-                    </h3>
-                    <p className="text-secondary font-bold text-xl mt-1">April 4th, 2026 · 8PM–12AM</p>
-                  </div>
                 </div>
                 <div className="p-6">
                   <p className="text-muted-foreground text-sm mb-4">Producer Lineup:</p>
