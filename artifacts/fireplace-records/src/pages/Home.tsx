@@ -123,7 +123,7 @@ export default function Home() {
 
           <motion.h1
             variants={fadeUp}
-            className="font-display text-[clamp(3rem,12vw,9rem)] font-bold leading-none tracking-tighter uppercase mb-4"
+            className="font-display text-[clamp(3rem,12vw,9rem)] font-bold leading-none tracking-tighter uppercase text-glow mb-4"
             style={{ color: "transparent", WebkitTextStroke: "2px white" }}
           >
             Fireplace<br />Records
