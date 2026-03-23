@@ -14,7 +14,7 @@ import imgAnthonyMims from "@assets/anthony-mims-web.webp";
 import imgBlackWilson from "@assets/black-wilson-web.webp";
 import imgExterior from "@assets/exterior-2-web.webp";
 import imgStorefront from "@assets/exterior-1-web.webp";
-import imgGrandOpeningFlyer from "@assets/grand-opening-flyer-web.webp";
+import imgGrandOpeningFlyer from "@assets/grand-opening-flyer-v2-web.webp";
 
 const IN_VIEW_MARGIN = "-80px 0px" as const;
 
@@ -199,25 +199,47 @@ export default function Home() {
                     decoding="async"
                   />
                 </div>
-                <div className="p-6">
-                  <p className="text-muted-foreground text-sm mb-4">Performances &amp; Sets By:</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {["KAIMBR", "GRAP LUVA", "J SCIENIDE", "DJ RODDYROD", "CHOPPY CHOP-E", "SHAW CALHOUNE", "DJ DUB", "DC VINYL HEADZ"].map((name) => (
-                      <span key={name} className="text-xs font-bold tracking-wider bg-muted px-3 py-1.5 uppercase">
-                        {name}
-                      </span>
-                    ))}
-                    <span className="text-xs font-bold tracking-wider text-primary uppercase">+ MORE!</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-3">
-                    {["Discounts", "New Releases", "Mystery Boxes", "Games"].map((item) => (
-                      <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                        {item}
+                <div className="p-6 space-y-5">
+                  {[
+                    {
+                      day: "FRI",
+                      date: "Mar 27",
+                      title: "After Hours at the Wrecka Stow",
+                      time: "8:30 PM – Midnight",
+                      artists: ["TRACEY LEE", "J SCIENIDE", "SHAW CALHOUNE", "DJ DUB", "GRAP LUVA", "KAIMBR", "DJ RODDYROD", "CHOPPY CHOP-E"],
+                    },
+                    {
+                      day: "SAT",
+                      date: "Mar 28",
+                      title: "Sunsets at Fireplace Records",
+                      time: "12:00 – 8:00 PM",
+                      artists: ["RWEONTHEAIR", "STYLUS", "BLACK INK", "2-TONE JONES", "RBI"],
+                    },
+                    {
+                      day: "SUN",
+                      date: "Mar 29",
+                      title: "DC Vinyl Headz Takeover",
+                      time: "2:00 – 7:00 PM",
+                      artists: ["HARVEY DENT", "LICK-A-SHOT", "NICK THA 1DA", "JIMMY PHINGAZ", "BRO DJ"],
+                    },
+                  ].map(({ day, date, title, time, artists }) => (
+                    <div key={day} className="border-l-2 border-primary pl-4">
+                      <div className="flex items-baseline gap-3 mb-1">
+                        <span className="font-display font-bold text-primary text-lg leading-none">{day}</span>
+                        <span className="text-muted-foreground text-xs font-bold tracking-wide uppercase">{date}</span>
+                        <span className="text-muted-foreground/50 text-xs ml-auto">{time}</span>
                       </div>
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground text-sm mt-4">5100 Baltimore Ave · Hyattsville, MD</p>
+                      <p className="font-bold text-sm text-foreground mb-2 uppercase tracking-wide">{title}</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {artists.map((name) => (
+                          <span key={name} className="text-xs font-bold tracking-wider bg-muted px-2 py-1 uppercase">
+                            {name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <p className="text-muted-foreground text-xs pt-1">5100 Baltimore Ave · Hyattsville, MD</p>
                 </div>
               </motion.div>
 
