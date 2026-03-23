@@ -6,15 +6,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useSubscribeMailingList } from "@workspace/api-client-react";
 import type { SubscribeMailingListMutationError } from "@workspace/api-client-react";
-import imgInterior1 from "@assets/interior-1-scaled_1774151838219.png";
-import imgInterior2 from "@assets/interior-2-scaled_1774151838221.png";
-import imgInterior3 from "@assets/interior-3-scaled_1774151838222.png";
-import imgDjTwoToneJones from "@assets/DJ-2-Tone-Jones-scaled_1774151838225.png";
-import imgAnthonyMims from "@assets/Anthony-Mims-scaled_1774151838226.png";
-import imgBlackWilson from "@assets/Black-Wilson-scaled_1774151838227.png";
-import imgExterior from "@assets/exterior-2-scaled_1774151838231.png";
-import imgStorefront from "@assets/exterior-1-scaled_1774152167184.png";
-import imgGrandOpeningFlyer from "@assets/Screenshot_2026-03-21_at_11.10.08_PM_1774152614267.png";
+import imgInterior1 from "@assets/interior-1-web.webp";
+import imgInterior2 from "@assets/interior-2-web.webp";
+import imgInterior3 from "@assets/interior-3-web.webp";
+import imgDjTwoToneJones from "@assets/dj-2-tone-jones-web.webp";
+import imgAnthonyMims from "@assets/anthony-mims-web.webp";
+import imgBlackWilson from "@assets/black-wilson-web.webp";
+import imgExterior from "@assets/exterior-2-web.webp";
+import imgStorefront from "@assets/exterior-1-web.webp";
+import imgGrandOpeningFlyer from "@assets/grand-opening-flyer-web.webp";
 
 const IN_VIEW_MARGIN = "-80px 0px" as const;
 
@@ -117,6 +117,8 @@ export default function Home() {
           src={imgStorefront}
           alt="Fireplace Records storefront — open sign and chalkboard reading 'When Servers Go Down Vinyl Will Still Be Here'"
           className="absolute inset-0 -z-10 w-full h-full object-cover object-top brightness-50"
+          fetchPriority="high"
+          decoding="sync"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/20 to-background" />
 
@@ -193,6 +195,8 @@ export default function Home() {
                     src={imgGrandOpeningFlyer}
                     alt="Fireplace Records Grand Opening Weekend March 27-29 flyer"
                     className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="p-6">
@@ -358,6 +362,8 @@ export default function Home() {
                               src={photo}
                               alt={photoAlt ?? name}
                               className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                              loading="lazy"
+                              decoding="async"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-muted border border-border">
@@ -427,7 +433,7 @@ export default function Home() {
                 { src: imgInterior3, alt: "Wide view of Fireplace Records interior with orange walls" },
               ].map(({ src, alt }) => (
                 <div key={alt} className="aspect-square overflow-hidden">
-                  <img src={src} alt={alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  <img src={src} alt={alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
                 </div>
               ))}
             </motion.div>
@@ -489,6 +495,8 @@ export default function Home() {
                     src={imgExterior}
                     alt="Fireplace Records neon 'records' sign in the store window"
                     className="w-full aspect-square object-cover object-center hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="border border-border bg-card p-6">
