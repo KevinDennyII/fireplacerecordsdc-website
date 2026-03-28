@@ -94,7 +94,7 @@ export default function Home() {
       {/* ─── NAV ─── */}
       <header className="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-background/90 backdrop-blur-md">
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-          <a href="#hero" className="text-foreground hover:text-primary transition-colors text-xl">
+          <a href="#hero" className="flex-shrink-0 text-foreground hover:text-primary transition-colors text-base md:text-xl">
             <FireplaceLogo />
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide uppercase text-muted-foreground">
@@ -105,7 +105,7 @@ export default function Home() {
               Stay Connected
             </a>
           </div>
-          <a href="https://www.instagram.com/fireplacerecordsdc" target="_blank" rel="noopener noreferrer" className="md:hidden text-muted-foreground hover:text-foreground transition-colors text-sm">
+          <a href="https://www.instagram.com/fireplacerecordsdc" target="_blank" rel="noopener noreferrer" className="md:hidden flex-shrink-0 text-muted-foreground hover:text-foreground transition-colors text-xs">
             @fireplacerecordsdc
           </a>
         </nav>

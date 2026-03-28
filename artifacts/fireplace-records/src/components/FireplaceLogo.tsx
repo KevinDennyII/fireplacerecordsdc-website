@@ -6,7 +6,7 @@ export function FireplaceLogo({ className }: { className?: string }) {
     <span className={`inline-flex items-center gap-2 ${className ?? ""}`}>
       <span className="inline-flex flex-col">
         <span
-          className="inline-flex items-center"
+          className="inline-flex items-center whitespace-nowrap"
           style={{ fontFamily: "'Bebas Neue', sans-serif", fontWeight: 400, letterSpacing: "0.04em" }}
         >
           <span>Fireplace Rec</span>
