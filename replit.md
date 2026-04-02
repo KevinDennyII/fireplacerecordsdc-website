@@ -100,11 +100,14 @@ Express 5 API server.
 
 - `GET /api/healthz` — Health check
 - `POST /api/mailing-list` — Subscribe email to mailing list
+- `POST /api/page-views` — Increment visitor count (atomic upsert), returns `{ count }`
+- `GET /api/page-views` — Return current visitor count without incrementing
 
 ### `lib/db` (`@workspace/db`)
 
 Database layer. Tables:
 - `mailing_list` — Email subscribers (id, email unique, name, subscribed_at)
+- `page_views_counter` — Single-row visitor counter (id=1, count bigint, updated_at)
 
 ### `lib/api-spec` (`@workspace/api-spec`)
 

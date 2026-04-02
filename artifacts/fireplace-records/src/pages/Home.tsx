@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { usePageViews } from "@/hooks/usePageViews";
 import { FireplaceLogo } from "@/components/FireplaceLogo";
 import { motion, useInView } from "framer-motion";
 import { useForm } from "react-hook-form";
@@ -67,6 +68,8 @@ export default function Home() {
       onSuccess: () => { reset(); },
     },
   });
+
+  const visitorCount = usePageViews();
 
   const onSubmit = (formData: EmailFormData) => {
     subscribe.mutate({ data: { email: formData.email, name: formData.name || undefined } });
@@ -658,6 +661,11 @@ export default function Home() {
             </a>
             {" "}with ♥
           </p>
+          {visitorCount !== null && (
+            <p className="mt-2 tabular-nums">
+              {visitorCount.toLocaleString()} visitors
+            </p>
+          )}
         </div>
       </footer>
     </div>
