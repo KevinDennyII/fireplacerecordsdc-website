@@ -21,3 +21,25 @@ All notable changes to this project will be documented in this file.
 - Fixed `scripts/post-merge.sh` workspace filter to correctly run DB push for `@workspace/db`.
 - Added `.pnpm-store/` to `.gitignore`.
 - Updated OpenAPI mailing-list constraints and regenerated API client + Zod schema artifacts to keep contracts in sync.
+
+<!--
+Release Template (copy for next update):
+
+## YYYY-MM-DD
+
+### Changed
+- 
+
+### Fixed
+- 
+
+### Security
+- 
+
+### Tooling
+- 
+
+### Notes
+- PR/commit:
+- Follow-up tasks:
+-->
