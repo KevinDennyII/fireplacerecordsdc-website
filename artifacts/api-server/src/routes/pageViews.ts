@@ -1,10 +1,16 @@
 import { Router, type IRouter } from "express";
 import { db } from "@workspace/db";
 import { sql } from "drizzle-orm";
+import { createIpRateLimiter } from "../middleware/rateLimit";
 
 const router: IRouter = Router();
+const pageViewsLimiter = createIpRateLimiter({
+  windowMs: 60_000,
+  maxRequests: 120,
+  message: "Too many page view requests. Please try again shortly.",
+});
 
-router.post("/page-views", async (req, res) => {
+router.post("/page-views", pageViewsLimiter, async (req, res) => {
   try {
     const result = await db.execute(sql`
       INSERT INTO page_views_counter (id, count, updated_at)

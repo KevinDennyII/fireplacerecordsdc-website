@@ -1,26 +1,17 @@
 import sleeveImg from "@assets/Screenshot_2026-03-22_at_1.55.11_PM_1774206667947.png";
+import { cn } from "@/lib/utils";
 
 export function FireplaceLogo({ className }: { className?: string }) {
-
   return (
-    <span className={`inline-flex items-center gap-2 ${className ?? ""}`}>
+    <span className={cn("inline-flex items-center gap-2", className)}>
       <span className="inline-flex flex-col">
-        <span
-          className="inline-flex items-center whitespace-nowrap"
-          style={{ fontFamily: "'Bebas Neue', sans-serif", fontWeight: 400, letterSpacing: "0.04em" }}
-        >
+        <span className="inline-flex items-center whitespace-nowrap font-['Bebas_Neue'] font-normal tracking-[0.04em]">
           <span>Fireplace Rec</span>
 
           <svg
             viewBox="0 0 20 20"
             aria-hidden="true"
-            style={{
-              width: "0.72em",
-              height: "0.72em",
-              display: "inline-block",
-              verticalAlign: "0.05em",
-              flexShrink: 0,
-            }}
+            className="inline-block w-[0.72em] h-[0.72em] align-[0.05em] shrink-0"
           >
             <circle cx="10" cy="10" r="10" fill="#111827" />
             <circle cx="10" cy="10" r="8"   fill="none" stroke="rgba(255,255,255,0.22)" strokeWidth="1.3" />
@@ -32,22 +23,14 @@ export function FireplaceLogo({ className }: { className?: string }) {
           <span>rds</span>
         </span>
 
-        <span
-          style={{
-            display: "block",
-            height: "1.5px",
-            background: "currentColor",
-            borderRadius: "1px",
-            opacity: 0.85,
-          }}
-        />
+        <span className="block h-px bg-current rounded-sm opacity-[0.85]" />
       </span>
 
       <img
         src={sleeveImg}
         alt=""
         aria-hidden="true"
-        style={{ width: "1.5em", height: "1.5em", flexShrink: 0, objectFit: "contain" }}
+        className="w-[1.5em] h-[1.5em] shrink-0 object-contain"
       />
     </span>
   );

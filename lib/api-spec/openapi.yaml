@@ -78,8 +78,13 @@ components:
         email:
           type: string
           format: email
+          minLength: 3
+          maxLength: 254
         name:
           type: string
+          minLength: 1
+          maxLength: 80
+          pattern: "\\S"
       required:
         - email
     MailingListSubscribeResponse:

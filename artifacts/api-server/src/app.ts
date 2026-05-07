@@ -5,8 +5,10 @@ import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
+const isProduction = process.env.NODE_ENV === "production";
 
 app.disable("x-powered-by");
+app.set("trust proxy", isProduction ? 1 : false);
 
 app.use(
   pinoHttp({
@@ -33,7 +35,7 @@ app.use((_req: Request, res: Response, next: NextFunction) => {
   res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
-  if (process.env.NODE_ENV === "production") {
+  if (isProduction) {
     res.setHeader(
       "Strict-Transport-Security",
       "max-age=63072000; includeSubDomains; preload",
@@ -57,18 +59,44 @@ app.use((_req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-const allowedOrigin = process.env["ALLOWED_ORIGIN"] ?? (
-  process.env.NODE_ENV === "production" ? "" : "*"
-);
+const allowedOrigins = (process.env["ALLOWED_ORIGIN"] ?? "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 app.use(cors({
-  origin: allowedOrigin || false,
+  origin: (origin, callback) => {
+    if (!origin) {
+      callback(null, true);
+      return;
+    }
+
+    if (!isProduction && allowedOrigins.length === 0) {
+      callback(null, true);
+      return;
+    }
+
+    callback(null, allowedOrigins.includes(origin));
+  },
   methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
 app.use(express.json({ limit: "16kb" }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 
 app.use("/api", router);
+app.use("/api", (_req: Request, res: Response) => {
+  res.status(404).json({
+    error: "not_found",
+    message: "The requested API endpoint was not found.",
+  });
+});
+app.use((err: unknown, req: Request, res: Response, _next: NextFunction) => {
+  req.log.error({ err }, "Unhandled API error");
+  res.status(500).json({
+    error: "server_error",
+    message: "Something went wrong. Please try again.",
+  });
+});
 
 export default app;

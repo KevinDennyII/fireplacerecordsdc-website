@@ -2,10 +2,16 @@ import { Router, type IRouter } from "express";
 import { SubscribeMailingListBody } from "@workspace/api-zod";
 import { db, mailingListTable } from "@workspace/db";
 import { eq } from "drizzle-orm";
+import { createIpRateLimiter } from "../middleware/rateLimit";
 
 const router: IRouter = Router();
+const mailListLimiter = createIpRateLimiter({
+  windowMs: 60_000,
+  maxRequests: 10,
+  message: "Too many subscription attempts. Please try again in a minute.",
+});
 
-router.post("/mailing-list", async (req, res) => {
+router.post("/mailing-list", mailListLimiter, async (req, res) => {
   const parseResult = SubscribeMailingListBody.safeParse(req.body);
   if (!parseResult.success) {
     res.status(422).json({
@@ -15,13 +21,28 @@ router.post("/mailing-list", async (req, res) => {
     return;
   }
 
-  const { email, name } = parseResult.data;
+  const rawEmail = parseResult.data.email;
+  const rawName = parseResult.data.name;
+  const normalizedEmail = typeof rawEmail === "string" ? rawEmail.trim().toLowerCase() : "";
+  const normalizedName = typeof rawName === "string" ? rawName.trim() : "";
+
+  if (
+    normalizedEmail.length === 0 ||
+    normalizedEmail.length > 254 ||
+    normalizedName.length > 80
+  ) {
+    res.status(422).json({
+      error: "validation_error",
+      message: "Invalid request body",
+    });
+    return;
+  }
 
   try {
     const existing = await db
       .select()
       .from(mailingListTable)
-      .where(eq(mailingListTable.email, email.toLowerCase()))
+      .where(eq(mailingListTable.email, normalizedEmail))
       .limit(1);
 
     if (existing.length > 0) {
@@ -33,8 +54,8 @@ router.post("/mailing-list", async (req, res) => {
     }
 
     await db.insert(mailingListTable).values({
-      email: email.toLowerCase(),
-      name: name ?? null,
+      email: normalizedEmail,
+      name: normalizedName.length > 0 ? normalizedName : null,
     });
 
     res.status(201).json({

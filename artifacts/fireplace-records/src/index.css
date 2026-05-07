@@ -88,6 +88,11 @@
   .text-glow {
     text-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
   }
+
+  .hero-title {
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -19,7 +19,23 @@ export const HealthCheckResponse = zod.object({
  * Subscribe an email address to the Fireplace Records mailing list
  * @summary Subscribe to mailing list
  */
+export const subscribeMailingListBodyEmailMin = 3;
+export const subscribeMailingListBodyEmailMax = 254;
+
+export const subscribeMailingListBodyNameMax = 80;
+
+export const subscribeMailingListBodyNameRegExp = new RegExp("\\S");
+
 export const SubscribeMailingListBody = zod.object({
-  email: zod.string().email(),
-  name: zod.string().optional(),
+  email: zod
+    .string()
+    .email()
+    .min(subscribeMailingListBodyEmailMin)
+    .max(subscribeMailingListBodyEmailMax),
+  name: zod
+    .string()
+    .min(1)
+    .max(subscribeMailingListBodyNameMax)
+    .regex(subscribeMailingListBodyNameRegExp)
+    .optional(),
 });

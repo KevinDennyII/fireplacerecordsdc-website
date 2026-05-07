@@ -7,6 +7,15 @@
  */
 
 export interface MailingListSubscribeRequest {
+  /**
+   * @minLength 3
+   * @maxLength 254
+   */
   email: string;
+  /**
+   * @minLength 1
+   * @maxLength 80
+   * @pattern \S
+   */
   name?: string;
 }
